@@ -1,5 +1,6 @@
 package baseball.view;
 
+import baseball.Command;
 import baseball.constant.ErrorMessage;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -39,5 +40,12 @@ public class InputView {
         if (input.isBlank()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_BLANK_INPUT);
         }
+    }
+
+    public Command readCommand() {
+        String command = Console.readLine();
+        validateNumeric(command);
+
+        return Command.of(Integer.parseInt(command));
     }
 }
