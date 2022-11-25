@@ -2,6 +2,7 @@ package baseball.view;
 
 import baseball.Command;
 import baseball.constant.ErrorMessage;
+import baseball.constant.GuidanceMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Arrays;
@@ -13,6 +14,8 @@ public class InputView {
     public static final String SPLIT_REGEX = "";
 
     public List<Integer> readNumbers() {
+        System.out.println(GuidanceMessage.REQUEST_BALL_NUMBERS);
+
         String numbers = Console.readLine();
         validateNonBlank(numbers);
         validateNumeric(numbers);
@@ -43,6 +46,9 @@ public class InputView {
     }
 
     public Command readCommand() {
+        System.out.println(GuidanceMessage.INFORM_GAME_COMPLETE);
+        System.out.println(GuidanceMessage.REQUEST_GAME_COMMAND);
+
         String command = Console.readLine();
         validateNumeric(command);
 
