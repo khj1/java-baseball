@@ -32,6 +32,7 @@ public class BaseballController {
             Balls user = Balls.of(numbers);
 
             GameResult result = computer.compare(user);
+            outputVIew.printResult(result);
             gameStatus = updateStatus(result);
         }
     }
