@@ -3,6 +3,7 @@ package baseball;
 public class GameResult {
     public static final int NO_STRIKE = 0;
     public static final int NO_BALL = 0;
+    public static final int STRIKE_OUT = 3;
     public static final String BLANK = " ";
 
     private int strike;
@@ -29,6 +30,10 @@ public class GameResult {
         if (result.isBall()) {
             ball++;
         }
+    }
+
+    public boolean isComplete() {
+        return strike == STRIKE_OUT;
     }
 
     @Override

@@ -1,11 +1,16 @@
 package baseball;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Balls {
 
     public static final int STARTING_POSITION = 1;
+    public static final int START_INCLUSIVE = 1;
+    public static final int END_INCLUSIVE = 9;
+    public static final int COUNT = 3;
 
     private final List<Ball> balls;
 
@@ -22,6 +27,12 @@ public class Balls {
             balls.add(ball);
         }
         return balls;
+    }
+
+    public static Balls createRandom() {
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, COUNT);
+
+        return new Balls(randomNumbers);
     }
 
     public static Balls of(List<Integer> balls) {
