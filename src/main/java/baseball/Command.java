@@ -25,4 +25,7 @@ public enum Command {
         return command == input;
     }
 
+    public boolean isRestart() {
+        return this == RESTART;
+    }
 }

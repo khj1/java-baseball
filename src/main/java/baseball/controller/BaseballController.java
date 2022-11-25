@@ -1,6 +1,7 @@
 package baseball.controller;
 
 import baseball.Balls;
+import baseball.Command;
 import baseball.GameResult;
 import baseball.view.InputView;
 import baseball.view.OutputVIew;
@@ -11,18 +12,19 @@ public class BaseballController {
 
     public static final boolean IN_PROGRESS = true;
     public static final boolean COMPLETE = false;
-    
+
     private final InputView inputView;
     private final OutputVIew outputVIew;
+    private Balls computer;
 
     public BaseballController() {
         inputView = new InputView();
         outputVIew = new OutputVIew();
+        computer = Balls.createRandom();
     }
 
     public void run() {
         outputVIew.printGameIntro();
-        Balls computer = Balls.createRandom();
 
         boolean gameStatus = IN_PROGRESS;
         while (gameStatus) {
@@ -36,9 +38,18 @@ public class BaseballController {
 
     private boolean updateStatus(GameResult result) {
         if (result.isComplete()) {
-            return COMPLETE;
+            return askRestart();
         }
         return IN_PROGRESS;
+    }
+
+    private boolean askRestart() {
+        Command command = inputView.readCommand();
+        if (command.isRestart()) {
+            computer = Balls.createRandom();
+            return IN_PROGRESS;
+        }
+        return COMPLETE;
     }
 
 }
