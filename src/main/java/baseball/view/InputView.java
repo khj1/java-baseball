@@ -14,7 +14,7 @@ public class InputView {
     public static final String SPLIT_REGEX = "";
 
     public List<Integer> readNumbers() {
-        System.out.println(GuidanceMessage.REQUEST_BALL_NUMBERS);
+        System.out.print(GuidanceMessage.REQUEST_BALL_NUMBERS);
 
         String numbers = Console.readLine();
         validateNonBlank(numbers);
