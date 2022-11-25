@@ -18,11 +18,18 @@ public class Ball {
         if (isStrike(ball)) {
             return Result.STRIKE;
         }
-        return Result.BALL;
+        if (isBall(ball)) {
+            return Result.BALL;
+        }
+        return Result.NOTHING;
     }
 
     private boolean isStrike(Ball ball) {
         return ball.isSamePosition(position) && ball.isSameNumber(number);
+    }
+
+    private boolean isBall(Ball ball) {
+        return ball.isSameNumber(number);
     }
 
     private boolean isSameNumber(int number) {

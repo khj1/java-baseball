@@ -28,4 +28,11 @@ public class BallTest {
         assertThat(computerBall.compare(userBall)).isEqualTo(Result.BALL);
     }
 
+    @Test
+    void createNothingTest() {
+        Ball userBall = Ball.of(2, 1);
+
+        assertThat(computerBall.compare(userBall)).isEqualTo(Result.NOTHING);
+    }
+
 }
