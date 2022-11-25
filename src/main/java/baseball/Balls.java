@@ -3,6 +3,7 @@ package baseball;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class Balls {
@@ -10,7 +11,7 @@ public class Balls {
     public static final int STARTING_POSITION = 1;
     public static final int START_INCLUSIVE = 1;
     public static final int END_INCLUSIVE = 9;
-    public static final int COUNT = 3;
+    public static final int MAX_SIZE = 3;
 
     private final List<Ball> balls;
 
@@ -30,9 +31,16 @@ public class Balls {
     }
 
     public static Balls createRandom() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, COUNT);
+        return new Balls(createRandomNumbers());
+    }
 
-        return new Balls(randomNumbers);
+    private static List<Integer> createRandomNumbers() {
+        HashSet<Integer> numbers = new HashSet<>();
+
+        while (numbers.size() < MAX_SIZE) {
+            numbers.add(Randoms.pickNumberInRange(START_INCLUSIVE, END_INCLUSIVE));
+        }
+        return new ArrayList<>(numbers);
     }
 
     public static Balls of(List<Integer> balls) {
