@@ -1,5 +1,6 @@
 package baseball;
 
+import baseball.constant.ErrorMessage;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
@@ -16,7 +17,43 @@ public class Balls {
     private final List<Ball> balls;
 
     public Balls(List<Integer> balls) {
+        validate(balls);
         this.balls = convertToBalls(balls);
+    }
+
+    private void validate(List<Integer> balls) {
+        validateSize(balls);
+        validateUnique(balls);
+        validateRange(balls);
+    }
+
+    private void validateRange(List<Integer> balls) {
+        if (balls.contains(0)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE_EXCEPTION);
+        }
+    }
+
+    private static void validateSize(List<Integer> balls) {
+        if (isInvalidSize(balls)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_SIZE_INPUT);
+        }
+    }
+
+    private static boolean isInvalidSize(List<Integer> balls) {
+        return balls.size() != MAX_SIZE;
+    }
+
+
+    private void validateUnique(List<Integer> balls) {
+        if (hasDuplicatedNumbers(balls)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_DUPLICATED_INPUT);
+        }
+    }
+
+    private boolean hasDuplicatedNumbers(List<Integer> balls) {
+        HashSet<Integer> uniqueNumbers = new HashSet<>(balls);
+
+        return uniqueNumbers.size() != MAX_SIZE;
     }
 
     private List<Ball> convertToBalls(List<Integer> numbers) {

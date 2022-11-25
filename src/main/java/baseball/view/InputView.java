@@ -17,7 +17,6 @@ public class InputView {
         System.out.print(GuidanceMessage.REQUEST_BALL_NUMBERS);
 
         String numbers = Console.readLine();
-        validateNonBlank(numbers);
         validateNumeric(numbers);
 
         return convertToList(numbers);
@@ -37,12 +36,6 @@ public class InputView {
 
     private boolean isNonNumeric(String input) {
         return !input.chars().allMatch(Character::isDigit);
-    }
-
-    private void validateNonBlank(String input) {
-        if (input.isBlank()) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_BLANK_INPUT);
-        }
     }
 
     public Command readCommand() {
