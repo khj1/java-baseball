@@ -15,6 +15,21 @@ public class Ball {
     }
 
     public Result compare(Ball ball) {
-        return Result.STRIKE;
+        if (isStrike(ball)) {
+            return Result.STRIKE;
+        }
+        return Result.BALL;
+    }
+
+    private boolean isStrike(Ball ball) {
+        return ball.isSamePosition(position) && ball.isSameNumber(number);
+    }
+
+    private boolean isSameNumber(int number) {
+        return this.number == number;
+    }
+
+    private boolean isSamePosition(int position) {
+        return this.position == position;
     }
 }
