@@ -10,8 +10,8 @@ import java.util.List;
 public class Balls {
 
     public static final int STARTING_POSITION = 1;
-    public static final int START_INCLUSIVE = 1;
-    public static final int END_INCLUSIVE = 9;
+    public static final int MIN_RANGE = 1;
+    public static final int MAX_RANGE = 9;
     public static final int MAX_SIZE = 3;
 
     private final List<Ball> balls;
@@ -28,9 +28,14 @@ public class Balls {
     }
 
     private void validateRange(List<Integer> balls) {
-        if (balls.contains(0)) {
+        if (isInvalidRange(balls)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE_EXCEPTION);
         }
+    }
+
+    private static boolean isInvalidRange(List<Integer> balls) {
+        return balls.stream()
+                .anyMatch(numbers -> numbers > MAX_RANGE || numbers < MIN_RANGE);
     }
 
     private static void validateSize(List<Integer> balls) {
@@ -75,7 +80,7 @@ public class Balls {
         HashSet<Integer> numbers = new HashSet<>();
 
         while (numbers.size() < MAX_SIZE) {
-            numbers.add(Randoms.pickNumberInRange(START_INCLUSIVE, END_INCLUSIVE));
+            numbers.add(Randoms.pickNumberInRange(MIN_RANGE, MAX_RANGE));
         }
         return new ArrayList<>(numbers);
     }
