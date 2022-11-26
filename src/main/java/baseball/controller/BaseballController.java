@@ -28,13 +28,23 @@ public class BaseballController {
 
         boolean gameStatus = IN_PROGRESS;
         while (gameStatus) {
-            List<Integer> numbers = inputView.readNumbers();
-            Balls user = Balls.of(numbers);
-
-            GameResult result = computer.compare(user);
-            outputVIew.printResult(result);
-            gameStatus = updateStatus(result);
+            gameStatus = progressGame();
         }
+    }
+
+    private boolean progressGame() {
+        Balls user = getBalls();
+        GameResult result = computer.compare(user);
+
+        outputVIew.printResult(result);
+
+        return updateStatus(result);
+    }
+
+    private Balls getBalls() {
+        List<Integer> numbers = inputView.readNumbers();
+
+        return Balls.of(numbers);
     }
 
     private boolean updateStatus(GameResult result) {
