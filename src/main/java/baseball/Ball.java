@@ -2,12 +2,12 @@ package baseball;
 
 public class Ball {
 
-    private final int number;
-    private final int position;
+    private final BallNumber number;
+    private final Position position;
 
     public Ball(int number, int position) {
-        this.number = number;
-        this.position = position;
+        this.number = BallNumber.of(number);
+        this.position = Position.of(position);
     }
 
     public static Ball of(int number, int position) {
@@ -32,11 +32,11 @@ public class Ball {
         return ball.isSameNumber(number);
     }
 
-    private boolean isSameNumber(int number) {
-        return this.number == number;
+    private boolean isSameNumber(BallNumber number) {
+        return this.number.equals(number);
     }
 
-    private boolean isSamePosition(int position) {
-        return this.position == position;
+    private boolean isSamePosition(Position position) {
+        return this.position.equals(position);
     }
 }
